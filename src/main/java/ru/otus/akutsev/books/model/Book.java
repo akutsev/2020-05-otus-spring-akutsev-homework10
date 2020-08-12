@@ -78,16 +78,6 @@ public class Book {
 	}
 
 	@Override
-	public String toString() {
-		return "Book{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", author=" + author.getName() +
-				", genre=" + genre.getGenreName() +
-				'}';
-	}
-
-	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (!(o instanceof Book)) return false;

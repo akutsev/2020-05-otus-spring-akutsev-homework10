@@ -1,4 +1,4 @@
-package ru.otus.akutsev.books.integrationtests;
+package ru.otus.akutsev.books.controllertests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,6 @@ import ru.otus.akutsev.books.service.AuthorService;
 import ru.otus.akutsev.books.service.BookService;
 import ru.otus.akutsev.books.service.GenreService;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.containsString;
@@ -39,10 +38,11 @@ public class BooksPagesControllerTest {
 
 	@Test
 	public void saveNewBookPostTes() throws Exception {
-		Book book2 = new Book(2, "Crime amd Punishment", null, null);
+		Book book = new Book(2, "Horse family", new Author(33, "Anton Chekhov"),
+				new Genre(22, "Comedy"));
 
 		mockMvc.perform(post("/save")
-				.content(objectMapper.writeValueAsString(book2)))
+				.flashAttr("book", book))
 				.andExpect(redirectedUrl("/"));
 	}
 
@@ -68,24 +68,11 @@ public class BooksPagesControllerTest {
 
 	@Test
 	public void showAllBooksGetTest() throws Exception {
-		Author author1 = new Author(75, "Ilf and Petrov");
-		Genre genre1 = new Genre(88, "Comedy");
-		Book book1 = new Book(1, "12 chairs", author1, genre1);
-
-		Author author2 = new Author(76, "Dostoevsky");
-		Genre genre2 = new Genre(89, "Psychological");
-		Book book2 = new Book(2, "Crime amd Punishment", author2, genre2);
-
-		given(bookService.getAll()).willReturn(List.of(book1, book2));
-		given(authorService.getAll()).willReturn(List.of(author1, author2));
-		given(genreService.findAll()).willReturn(List.of(genre1, genre2));
 
 		this.mockMvc.perform(get("/")).andExpect(status().isOk())
-				.andExpect(content().string(containsString("12 chairs")))
-				.andExpect(content().string(containsString("Crime amd Punishment")))
-				.andExpect(content().string(containsString("Comedy")))
-				.andExpect(content().string(containsString("Psychological")))
-				.andExpect(content().string(containsString("Ilf and Petrov")))
-				.andExpect(content().string(containsString("Dostoevsky")));
+				.andExpect(content().string(containsString("Имя книги")))
+				.andExpect(content().string(containsString("Имя автора книги")))
+				.andExpect(content().string(containsString("азвание жанра")));
 	}
+
 }

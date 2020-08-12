@@ -1,4 +1,4 @@
-package ru.otus.akutsev.books.integrationtests;
+package ru.otus.akutsev.books.controllertests;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

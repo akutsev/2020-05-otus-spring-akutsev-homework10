@@ -1,4 +1,4 @@
-package ru.otus.akutsev.books.unittests;
+package ru.otus.akutsev.books.daotests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import ru.otus.akutsev.books.dao.BookDao;
-import ru.otus.akutsev.books.dao.CommentDao;
 import ru.otus.akutsev.books.model.Author;
 import ru.otus.akutsev.books.model.Book;
 import ru.otus.akutsev.books.model.Comment;

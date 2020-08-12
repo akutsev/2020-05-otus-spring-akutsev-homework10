@@ -3,10 +3,7 @@ package ru.otus.akutsev.books.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.otus.akutsev.books.model.Author;
 import ru.otus.akutsev.books.model.Book;
 import ru.otus.akutsev.books.model.Genre;
@@ -63,9 +60,8 @@ public class BooksPagesController {
 
 	@PostMapping("/edit")
 	public String saveEditedBook(Book book, Model model) {
-		Book bookSaved = bookService.save(book);
+		bookService.save(book);
 
-		model.addAttribute("books", bookService.getAll());
 		return "redirect:/";
 	}
 
@@ -73,15 +69,13 @@ public class BooksPagesController {
 	public String deleteBook(long id, Model model) {
 		bookService.deleteById(id);
 
-		model.addAttribute("books", bookService.getAll());
 		return "redirect:/";
 	}
 
 	@PostMapping("/save")
-	public String saveNewBook(Book book, Model model) {
-		Book newBook = bookService.save(book);
+	public String saveNewBook(@ModelAttribute(name = "book") Book book) {
+		bookService.save(book);
 
-		model.addAttribute("books", bookService.getAll());
 		return "redirect:/";
 	}
 }

@@ -1,4 +1,4 @@
-package ru.otus.akutsev.books.unittests;
+package ru.otus.akutsev.books.daotests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
