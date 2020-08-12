@@ -5,7 +5,7 @@
     <title>Правка книги</title>
 </head>
 <body>
-    <form id="edit-book" th:action="@{/edit(id=${book.id})}" th:method="post" action="edit.html">
+    <form id="edit-book" th:action="@{/edit(id=${book.id})}" th:method="post" th:object = "${book}" action="edit.html">
 
         <div class="row">
             <label for="name-input">Name:</label>

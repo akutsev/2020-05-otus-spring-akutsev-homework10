@@ -59,14 +59,14 @@ public class BooksPagesController {
 	}
 
 	@PostMapping("/edit")
-	public String saveEditedBook(Book book, Model model) {
+	public String saveEditedBook(@ModelAttribute(name = "book") Book book) {
 		bookService.save(book);
 
 		return "redirect:/";
 	}
 
 	@PostMapping("/delete")
-	public String deleteBook(long id, Model model) {
+	public String deleteBook(long id) {
 		bookService.deleteById(id);
 
 		return "redirect:/";

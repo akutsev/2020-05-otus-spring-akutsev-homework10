@@ -5,7 +5,7 @@
     <title>Новая книга</title>
 </head>
 <body>
-<form id="save-book" th:action="@{/save}" th:object = "${book}" th:method="post">
+<form id="save-book" th:action="@{/save}" th:object = "${book}" th:method="post" action="save.html">
 
     <div class="row">
         <label for="name-input">Name:</label>
